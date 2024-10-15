@@ -27,41 +27,63 @@
         <span class="name">DUSKPET</span>
       </div>
       <div class="frame-main">
-        <div class="main-illustration">
-          <img src="assets/svg/undraw-veterinaryClinic.svg" alt="" />
+        <div class="secondary-illustration">
+          <img src="assets/svg/undraw-veterinaryClinic.svg" />
         </div>
-        <div class="loginRegisterOptions">
-          <button class="button-login"><span>Login</span></button>
-          <button class="button-register"><span>Cadastre-se</span></button>
-        </div>
-        <div class="loginPage hidden">
-          <div class="loginForm">
-            <div class="loginFormTitle">
-              <span>Login</span>
-            </div>
-            <div class="loginFormInputs">
+        <div class="frame-secondary">
+          <div class="main-illustration">
+            <img src="assets/svg/undraw-veterinaryClinic.svg" />
+          </div>
+          <div class="loginRegisterOptions">
+            <button class="button" onclick="showLoginPage()">Login</button>
+            <button class="button button-register" onclick="showRegisterPage()">
+              Cadastre-se
+            </button>
+          </div>
+          <div class="loginPage hidden">
+            <button
+              id="login-btn"
+              class="button back-btn"
+              onclick="backToMain()"
+            >
+              <img src="assets/svg/back-arrow.svg" />
+            </button>
+            <h2>Login</h2>
+            <div class="loginForm">
               <input type="email" placeholder="Email" />
               <input type="password" placeholder="Senha" />
-              <button class="button-login"><span>Entrar</span></button>
+              <p>Esqueceu a senha?</p>
+              <button class="button">Entrar</button>
+            </div>
+            <p>__________ Acesse com __________</p>
+            <div class="social-login">
+              <button class="button">
+                <img src="assets/svg/facebook-ic.svg" />
+              </button>
+              <button class="button">
+                <img src="assets/svg/google-ic.svg" />
+              </button>
+              <button class="button">
+                <img src="assets/svg/cib-apple.svg" />
+              </button>
             </div>
           </div>
-        </div>
-        <div class="registerPage hidden">
-          <div class="registerForm">
-            <div class="registerFormTitle">
-              <span>Cadastre-se</span>
-            </div>
-            <div class="registerFormInputs">
-              <input type="text" placeholder="Nome" />
-              <input type="text" placeholder="Sobrenome" />
-              <input type="email" placeholder="Email" />
-              <input type="password" placeholder="Senha" />
-              <input type="password" placeholder="Confirme a senha" />
-              <button class="button-register"><span>Cadastrar</span></button>
+          <div class="registerPage hidden">
+            <div class="registerForm">
+              <div class="registerFormTitle"><span>Cadastre-se</span></div>
+              <div class="registerFormInputs">
+                <input type="text" placeholder="Nome" />
+                <input type="text" placeholder="Sobrenome" />
+                <input type="email" placeholder="Email" />
+                <input type="password" placeholder="Senha" />
+                <input type="password" placeholder="Confirme a senha" />
+                <button class="button-register"><span>Cadastrar</span></button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="js/app.js"></script>
   </body>
 </html>
