@@ -7,4 +7,7 @@
   /* Cores */
 
   --electricBlue: #3392ff;
+  --duskTheme: #222222;
+  --text: #ffffff;
+  --lamp: url(../assets/svg/lamp-light-off.svg);
 }
