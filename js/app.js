@@ -6,11 +6,16 @@ const registerPage = document.querySelector('.registerPage');
 function showLoginPage() {
   loginRegisterOptions.classList.add('hidden');
   mainIllustration.classList.add('hidden');
+  registerPage.classList.add('hidden');
   loginPage.classList.remove('hidden');
-  console.log('showLoginPage');
 }
 
-function showRegisterPage() {}
+function showRegisterPage() {
+  loginRegisterOptions.classList.add('hidden');
+  mainIllustration.classList.add('hidden');
+  registerPage.classList.remove('hidden');
+  loginPage.classList.add('hidden');
+}
 
 function backToMain() {
   loginPage.classList.add('hidden');

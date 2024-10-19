@@ -27,6 +27,11 @@ h2 {
 }
 
 p {
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
 }
 
 .main-container {
@@ -101,6 +106,7 @@ p {
 }
 
 .button-register {
+  margin-top: 20px;
   margin-bottom: 40px;
   background: #ffffff;
   border: 1px solid #1f41bb;
@@ -108,41 +114,49 @@ p {
 }
 
 .back-btn {
-  width: 40px;
-  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 40px;
+  max-height: 40px;
   margin-right: 75%;
+  margin-bottom: 20px;
 }
 
 .frame-main {
   position: relative;
   margin: 0;
   width: 100%;
-  height: 90%;
+  height: 100%;
   background: #222222;
-  overflow: hidden;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   border-radius: 30px;
   box-shadow: 0 0 19.9px 0 rgba(0, 0, 0, 0.6);
 }
 
 .frame-secondary {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
 }
 
 .main-illustration {
-  position: absolute;
+  padding-top: 60px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   width: 100%;
-  height: 70%;
+  height: 100%;
   overflow: hidden;
 }
 
 .main-illustration img {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .secondary-illustration {
@@ -163,28 +177,36 @@ p {
 }
 
 .loginRegisterOptions {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  height: 100%;
-}
-
-.loginPage {
-  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.loginRegisterOptions p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.loginPage,
+.registerPage {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-top: 30px;
   width: 100%;
   height: 100%;
   z-index: 10;
 }
 
-.loginForm {
+.loginForm,
+.registerForm {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -195,7 +217,8 @@ p {
   height: auto;
 }
 
-.loginForm input {
+.loginForm input,
+.registerForm input {
   width: 80%;
   height: 40px;
   padding: 0 10px;
@@ -209,11 +232,13 @@ p {
   text-align: left;
 }
 
-.loginForm button {
+.loginForm button,
+.registerForm button {
   width: 80%;
 }
 
-.loginForm p {
+.loginForm p,
+.registerForm p {
   font-family: Montserrat;
   font-size: 12px;
   font-weight: 500;
@@ -226,14 +251,31 @@ p {
 
 .social-login {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
   margin: 0;
-  margin-bottom: 20px;
+  gap: 10px;
 }
 
-.social-login button {
+.social-login p {
+  width: 100%;
+  height: auto;
+  font-size: 16px;
+  text-align: center;
+  text-wrap: nowrap;
+  padding: 0;
+}
+
+.social-login-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  margin: 0;
+}
+
+.social-login-btns button {
   width: 60px;
   height: 40px;
   background-color: transparent;
@@ -295,5 +337,35 @@ p {
   .social-login button {
     width: 80px;
     height: 50px;
+  }
+}
+
+@media (max-height: 200px) {
+  .title {
+    display: none;
+  }
+}
+
+@media (max-height: 450px) {
+  .main-illustration {
+    display: none;
+  }
+
+  .button-register {
+    margin-bottom: 0;
+  }
+
+  .loginRegisterOptions p {
+    margin-top: 0;
+  }
+}
+
+@media (max-height: 600px) {
+  .main-illustration {
+    padding-top: 20px;
+  }
+
+  .loginRegisterOptions {
+    justify-content: center;
   }
 }
