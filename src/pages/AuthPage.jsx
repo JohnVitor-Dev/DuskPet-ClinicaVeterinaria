@@ -8,10 +8,15 @@ import veterinaryIllustrationDark from '../assets/svg/undraw-veterinaryClinicDar
 
 export default function Home() {
     const navigate = useNavigate();
-    const [isLightMode, setIsLightMode] = useState(false);
+    const [isLightMode, setIsLightMode] = useState(() => {
+        const savedTheme = localStorage.getItem('theme');
+        return savedTheme === 'light';
+    });
 
     useEffect(() => {
-        document.documentElement.className = isLightMode ? 'lightMode' : 'darkMode';
+        const theme = isLightMode ? 'light' : 'dark';
+        document.documentElement.className = `${theme}Mode`;
+        localStorage.setItem('theme', theme);
     }, [isLightMode]);
 
     return (
