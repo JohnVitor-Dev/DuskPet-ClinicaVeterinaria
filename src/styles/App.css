@@ -1,0 +1,407 @@
+:root {
+  --default-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Ubuntu, 'Helvetica Neue', Helvetica, Arial, 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft Yahei UI', 'Microsoft Yahei',
+    'Source Han Sans CN', sans-serif;
+
+  /* Cores */
+  --electricBlue: #3392ff;
+
+}
+
+:root.lightMode {
+  --duskTheme: #ffffff;
+  --text: #000000;
+}
+
+:root.darkMode {
+  --duskTheme: #222222;
+  --text: #ffffff;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--duskTheme);
+  color: var(--text);
+  font-family: Montserrat;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100dvw;
+  height: 100dvh;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+h2 {
+  color: var(--electricBlue);
+  font-family: Urbanist, var(--default-font-family);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 36px;
+  text-shadow: 1px 2px 3px black;
+}
+
+p {
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  color: var(--text);
+}
+
+.main-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 90%;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  position: relative;
+  margin: 20px 0 0 0;
+  z-index: 8;
+}
+
+.logo {
+  flex-shrink: 0;
+  position: relative;
+  width: 38px;
+  height: 36px;
+  background: url(../assets/images/jys.png) no-repeat center;
+  background-size: cover;
+  z-index: 9;
+  border-radius: 30px;
+}
+
+.name {
+  flex-shrink: 0;
+  flex-basis: auto;
+  position: relative;
+  height: 36px;
+  color: var(--text);
+  font-family: Urbanist, var(--default-font-family);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 36px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  height: 43px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border: none;
+  background: #3352ff;
+  color: #ffffff;
+  font-family: Montserrat, var(--default-font-family);
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.button-register {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  background: #ffffff;
+  border: 1px solid #1f41bb;
+  color: #222222;
+}
+
+.back-btn {
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 40px;
+  max-height: 40px;
+  margin-right: 75%;
+  margin-bottom: 20px;
+}
+
+.colorTheme-btn {
+  background-color: transparent;
+  background-size: cover;
+  width: 38px;
+  height: 38px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+}
+
+.colorTheme-btn.on {
+  background-image: url("../assets/images/lamp-light-on.png");
+}
+
+.colorTheme-btn.off {
+  background-image: url("../assets/images/lamp-light-off.png");
+}
+
+.frame-main {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--duskTheme);
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 30px;
+  box-shadow: 0 0 19.9px 0 rgba(0, 0, 0, 0.6);
+}
+
+.frame-secondary {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.main-illustration {
+  padding-top: 60px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.main-illustration img {
+  width: 100%;
+  height: 100%;
+}
+
+.secondary-illustration {
+  position: absolute;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 45%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(28, 57, 163, 0.322);
+  box-shadow: rgba(28, 57, 163, 0.322) 20px 0px 100px 50px;
+}
+
+.secondary-illustration img {
+  width: 100%;
+  height: auto;
+}
+
+.loginPage,
+.registerPage {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-top: 30px;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.loginForm,
+.registerForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+  width: 100%;
+  height: auto;
+}
+
+.loginForm input,
+.registerForm input {
+  width: 80%;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--text);
+  border-radius: 10px;
+  background: #f7f8f9;
+  color: #000000;
+  font-family: Montserrat, var(--default-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.loginForm button,
+.registerForm button {
+  width: 80%;
+}
+
+.loginForm p,
+.registerForm p {
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14.63px;
+  text-align: center;
+  margin-top: -12px;
+  margin-left: 50%;
+  padding: 0;
+}
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  gap: 10px;
+}
+
+.social-login p {
+  width: 100%;
+  height: auto;
+  font-size: 16px;
+  text-align: center;
+  text-wrap: nowrap;
+  padding: 0;
+}
+
+.social-login-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  margin: 0;
+}
+
+.social-login-btns button {
+  width: 60px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid;
+}
+
+/* Laptops e desktops */
+@media (min-width: 1024px) {
+  .title {
+    margin-right: 80%;
+  }
+
+  .button-register {
+    margin-bottom: 60px;
+  }
+
+  .frame-main {
+    overflow-y: hidden;
+  }
+
+  .frame-secondary {
+    width: 50%;
+    margin-left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden;
+  }
+
+  .loginRegisterOptions {
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-illustration {
+    display: none;
+  }
+
+  .secondary-illustration {
+    display: flex;
+  }
+
+  .loginForm input {
+    width: 60%;
+    height: 50px;
+    font-size: 18px;
+  }
+
+  .loginForm button {
+    width: 60%;
+    height: 50px;
+    font-size: 18px;
+  }
+
+  .loginForm p {
+    font-size: 14px;
+    line-height: 16.63px;
+    margin-left: 40%;
+  }
+
+  .social-login button {
+    width: 80px;
+    height: 50px;
+  }
+}
+
+@media (max-height: 200px) {
+  .title {
+    display: none;
+  }
+}
+
+@media (max-height: 450px) {
+  .main-illustration {
+    display: none;
+  }
+
+  .button-register {
+    margin-bottom: 0;
+  }
+
+  .loginRegisterOptions p {
+    margin-top: 0;
+  }
+}
+
+@media (max-height: 600px) {
+  .main-illustration {
+    padding-top: 20px;
+  }
+
+  .loginRegisterOptions {
+    justify-content: center;
+  }
+}
