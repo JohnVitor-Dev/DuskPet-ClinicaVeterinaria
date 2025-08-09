@@ -1,22 +1,30 @@
+import { useNavigate } from "react-router-dom";
+
 import TopBar from "../components/TopBar.jsx";
-import HomeSlideBanner from "../components/HomeSlideBanner.jsx";
-import PetShopBanner from '../assets/images/banner.jpg';
 
 export default function HomePage() {
+    const token = localStorage.getItem("token");
+    const navigate = useNavigate();
+
+    if (token) {
+        return <Navigate to="/dashboard" />;
+    }
+
 
     return (
         <div className="home-container">
             <TopBar />
-            <div className="min-height-container">
-                <section className="main-banner">
-                    <HomeSlideBanner />
-                </section>
-                <section className="products">
-                    <h2>Produtos em Destaque</h2>
-                </section>
-                <section className="contact" >
-                    <img src={PetShopBanner} alt="Pet Shop Banner" className='banner' />
-                </section>
+            <div className="home-frame-main">
+                <div className="home-main">
+                    <h2>Bem-vindo à DuskPet</h2>
+                    <p> A DuskPet é uma clínica veterinária especializada no cuidado com seu pet.
+                        Nosso sistema foi desenvolvido para facilitar o agendamento de consultas,
+                        acesso aos dados dos animais e controle eficiente de medicamentos.</p>
+                    <div className="home-main-buttons">
+                        <button onClick={() => navigate("/register")}>Registrar</button>
+                        <p>Já possui uma conta? <button onClick={() => navigate("/login")}>Login</button></p>
+                    </div>
+                </div>
             </div>
         </div>
     );
