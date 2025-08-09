@@ -20,10 +20,10 @@ export default function HomePage() {
                     <p> A DuskPet é uma clínica veterinária especializada no cuidado com seu pet.
                         Nosso sistema foi desenvolvido para facilitar o agendamento de consultas,
                         acesso aos dados dos animais e controle eficiente de medicamentos.</p>
-                    <div className="home-main-buttons">
-                        <button onClick={() => navigate("/register")}>Registrar</button>
-                        <p>Já possui uma conta? <button onClick={() => navigate("/login")}>Login</button></p>
-                    </div>
+                </div>
+                <div className="home-main-buttons">
+                    <button onClick={() => navigate("/register")}>Registrar</button>
+                    <p>Já possui uma conta? <a onClick={() => navigate("/login")}>Login</a></p>
                 </div>
             </div>
         </div>
