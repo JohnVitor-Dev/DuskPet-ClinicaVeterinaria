@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-export default function LoginForm() {
+export default function RegisterForm() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
-    const handleLogin = (e) => {
+    const handleRegister = (e) => {
         e.preventDefault();
         console.log(email, senha);
         // backend
@@ -12,14 +12,13 @@ export default function LoginForm() {
 
     return (
         <>
-            <div className="loginPage">
-                <h2>Login</h2>
-                <form className="loginForm" onSubmit={handleLogin}>
+            <div className="registerPage">
+                <h2>Registrar</h2>
+                <form className="registerForm" onSubmit={handleRegister}>
                     <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
                     <input type="password" placeholder="Senha" value={senha} onChange={e => setSenha(e.target.value)} />
-                    <a className="forgot-password-link" href="/forgot-password">Esqueceu a senha?</a>
-                    <button className="button" type="submit">Entrar</button>
-                    <p>Ainda não possui uma conta? <a href="/register">Cadastre-se</a></p>
+                    <button className="button" type="submit">Registrar</button>
+                    <p>Já possui uma conta? <a href="/login">Faça login</a></p>
                 </form>
             </div>
             {/* Social Media */}

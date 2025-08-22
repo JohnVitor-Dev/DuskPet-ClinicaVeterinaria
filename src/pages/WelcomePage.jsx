@@ -4,7 +4,7 @@ import TopBar from "../components/TopBar.jsx";
 
 import HomeBackground from "../assets/images/home-background.png"
 
-export default function HomePage() {
+export default function WelcomePage() {
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
 

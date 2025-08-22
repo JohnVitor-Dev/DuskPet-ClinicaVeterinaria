@@ -1,6 +1,9 @@
-export default function ThemeToggle({ isLightMode, setIsLightMode }) {
+import useThemeToggle from "../hooks/useThemeToggle.jsx"
+
+export default function ThemeToggle() {
+    const [buttonClass, toggleTheme] = useThemeToggle();
 
     return (
-        <button className={isLightMode ? "colorTheme-btn on" : "colorTheme-btn off"} onClick={() => setIsLightMode(prev => !prev)}></button>
+        <button className={buttonClass} onClick={toggleTheme} />
     );
 }

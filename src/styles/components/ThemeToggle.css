@@ -1,0 +1,18 @@
+.colorTheme-btn {
+    background-color: transparent;
+    background-size: cover;
+    width: 38px;
+    height: 38px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+}
+
+.colorTheme-btn.on {
+    background-image: url("../../assets/images/lamp-light-on.png");
+}
+
+.colorTheme-btn.off {
+    background-image: url("../../assets/images/lamp-light-off.png");
+}
