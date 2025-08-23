@@ -9,6 +9,13 @@
     --darkBlue: #3352ff;
 
     --loginIllustration: url('../../assets/svg/loginIllustration-Dark.svg');
+    --navPets: url('../../assets/svg/navPets.svg');
+    --navConsultas: url('../../assets/svg/navConsultas.svg');
+    --navVeterinarios: url('../../assets/svg/navVeterinarios.svg');
+    --navLoja: url('../../assets/svg/navLoja.svg');
+
+    /* Efeitos */
+    --newtabbar-box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.4);
 }
 
 :root.lightMode {

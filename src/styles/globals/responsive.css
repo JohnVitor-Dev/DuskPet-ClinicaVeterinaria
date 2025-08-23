@@ -37,32 +37,36 @@
         display: flex;
     }
 
-    .loginForm input {
+    .loginForm input,
+    .registerForm input {
         width: 60%;
         height: 50px;
         font-size: 18px;
     }
 
-    .loginForm button {
+    .loginForm button,
+    .registerForm button {
         width: 60%;
         height: 50px;
         font-size: 18px;
     }
 
-    .loginForm p {
+    .forgot-password-link {
+        width: 60%;
+    }
+
+    .loginForm p,
+    .registerForm p {
         font-size: 1rem;
         line-height: 16.63px;
     }
 
-    .loginForm a {
+    .loginForm a,
+    .registerForm a {
         font-size: 1rem;
         line-height: 16.63px;
     }
 
-    .social-login button {
-        width: 80px;
-        height: 50px;
-    }
 
     .home-container {
         background-size: 40%;
@@ -115,17 +119,28 @@
     }
 }
 
+@media (min-height: 768px) {
+
+    .loginForm p,
+    .registerForm p {
+        font-size: 1.3rem;
+        line-height: 16.63px;
+    }
+
+    .loginForm a,
+    .registerForm a {
+        font-size: 1.3rem;
+        line-height: 16.63px;
+    }
+
+}
+
 @media (max-height: 200px) {
     .title {
         display: none;
     }
 }
 
-@media (max-width: 350px) {
-    .illustrationBackground {
-        display: none;
-    }
-}
 
 @media (max-height: 450px) {
     .illustrationBackground {
@@ -170,5 +185,11 @@
 
     .home-main-buttons {
         height: 25%;
+    }
+}
+
+@media (max-width: 750px) {
+    .illustrationBackground {
+        display: none;
     }
 }

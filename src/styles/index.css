@@ -1,7 +1,8 @@
 @import url('./globals/main.css');
 @import url('./components/AuthPage.css');
 @import url('./components/WelcomePage.css');
-@import url('./components/LoginForm.css');
+@import url('./components/Forms.css');
 @import url('./components/ThemeToggle.css');
 @import url('./components/TopBar.css');
 @import url('./globals/responsive.css');
+@import url('./components/NavBar.css');
