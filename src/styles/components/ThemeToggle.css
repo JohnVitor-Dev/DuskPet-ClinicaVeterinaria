@@ -7,6 +7,16 @@
     padding: 0;
     cursor: pointer;
     border: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.colorTheme-btn:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.colorTheme-btn:active {
+    transform: scale(0.95);
 }
 
 .colorTheme-btn.on {

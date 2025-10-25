@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from "./pages/Login.jsx";
 import RegisterPage from "./pages/Register.jsx";
 import WelcomePage from "./pages/WelcomePage.jsx";
@@ -10,9 +10,9 @@ import UserProfile from "./pages/UserProfile.jsx";
 import Shop from "./pages/Shop.jsx";
 
 
-function ProtectedRoute({ element }) {
-  const isAuthenticated = false; // Logica de autenticação
-  return isAuthenticated ? element : <Navigate to="/login" />;
+function ProtectedRoute({ children }) {
+  const token = localStorage.getItem('token');
+  return token ? children : <Navigate to="/login" />;
 }
 
 function App() {
@@ -22,13 +22,12 @@ function App() {
         <Route path='/' element={<WelcomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-      </Routes>
-      <Routes element={<ProtectedRoute />}>
-        <Route path="/pets" element={<Pets />} />
-        <Route path="/consultas" element={<Consultations />} />
-        <Route path="/veterinarios" element={<Veterinarians />} />
-        <Route path="/perfil" element={<UserProfile />} />
-        <Route path="/loja" element={<Shop />} />
+
+        <Route path="/pets" element={<ProtectedRoute><Pets /></ProtectedRoute>} />
+        <Route path="/consultas" element={<ProtectedRoute><Consultations /></ProtectedRoute>} />
+        <Route path="/veterinarios" element={<ProtectedRoute><Veterinarians /></ProtectedRoute>} />
+        <Route path="/perfil" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
+        <Route path="/loja" element={<ProtectedRoute><Shop /></ProtectedRoute>} />
       </Routes>
     </Router>
   );

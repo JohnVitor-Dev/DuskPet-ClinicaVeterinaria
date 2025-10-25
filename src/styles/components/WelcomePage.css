@@ -24,6 +24,7 @@
     align-items: center;
     justify-content: flex-start;
     gap: 2rem;
+    transition: background 0.3s ease;
 }
 
 .home-content {
@@ -39,6 +40,7 @@
 
 .home-frame-main p {
     color: var(--text);
+    transition: color 0.3s ease;
 }
 
 .home-main {
@@ -64,6 +66,7 @@
 
 .home-main-buttons p {
     color: var(--text);
+    transition: color 0.3s ease;
 }
 
 .home-main-buttons button {

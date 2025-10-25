@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 import TopBar from "../components/TopBar.jsx";
 
@@ -9,7 +9,7 @@ export default function WelcomePage() {
     const navigate = useNavigate();
 
     if (token) {
-        return <Navigate to="/dashboard" />;
+        return <Navigate to="/pets" />;
     }
 
 

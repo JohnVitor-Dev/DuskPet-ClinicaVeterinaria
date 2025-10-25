@@ -15,14 +15,28 @@
     width: 80%;
     height: 40px;
     padding: 0 10px;
-    border: 1px solid var(--text);
+    border: 1px solid var(--input-border);
     border-radius: 10px;
-    background: #f7f8f9;
-    color: #000000;
+    background: var(--input-bg);
+    color: var(--text);
     font-family: Montserrat, var(--default-font-family);
     font-size: 16px;
     font-weight: 400;
     text-align: left;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.loginForm input::placeholder,
+.registerForm input::placeholder {
+    color: var(--text);
+    opacity: 0.5;
+    transition: color 0.3s ease;
+}
+
+.loginForm input:focus,
+.registerForm input:focus {
+    outline: 2px solid var(--electricBlue);
+    border-color: var(--electricBlue);
 }
 
 .loginForm button,
@@ -42,6 +56,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    color: var(--text);
+    transition: color 0.3s ease;
 }
 
 .loginForm a,
@@ -55,6 +71,7 @@
     color: var(--darkBlue);
     text-decoration: none;
     cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .loginForm a:hover,

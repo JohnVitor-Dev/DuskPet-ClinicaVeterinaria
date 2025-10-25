@@ -46,6 +46,7 @@
     text-align: left;
     white-space: nowrap;
     z-index: 10;
+    transition: color 0.3s ease;
 }
 
 .frame-main {
