@@ -5,30 +5,45 @@ import {
     navVeterinariosSVG,
     navLojaSVG
 } from "./NavIcons";
+import ThemeToggle from './ThemeToggle.jsx';
 
 export default function NavBar() {
     const { currentSite, handleNavigation } = useNavigation();
 
+    const navItems = [
+        { id: "pets", label: "Pets", icon: navPetsSVG },
+        { id: "consultas", label: "Consultas", icon: navConsultasSVG },
+        { id: "veterinarios", label: "Veterinários", icon: navVeterinariosSVG },
+        { id: "loja", label: "Loja", icon: navLojaSVG }
+    ];
+
     return (
-        <nav className="navbar">
-            <ul className="navbar-links">
-                <button className={currentSite === "pets" ? "active" : "inactive"} onClick={() => handleNavigation("pets")}>
-                    {navPetsSVG}
-                    <p className={currentSite === "pets" ? "nav-text" : "nav-text-inactive"}>Pets</p>
-                </button>
-                <button className={currentSite === "consultas" ? "active" : "inactive"} onClick={() => handleNavigation("consultas")}>
-                    {navConsultasSVG}
-                    <p className={currentSite === "consultas" ? "nav-text" : "nav-text-inactive"}>Consultas</p>
-                </button>
-                <button className={currentSite === "veterinarios" ? "active" : "inactive"} onClick={() => handleNavigation("veterinarios")}>
-                    {navVeterinariosSVG}
-                    <p className={currentSite === "veterinarios" ? "nav-text" : "nav-text-inactive"}>Veterinários</p>
-                </button>
-                <button className={currentSite === "loja" ? "active" : "inactive"} onClick={() => handleNavigation("loja")}>
-                    {navLojaSVG}
-                    <p className={currentSite === "loja" ? "nav-text" : "nav-text-inactive"}>Loja</p>
-                </button>
-            </ul>
-        </nav>
+        <aside className="sidebar">
+            <div className="sidebar-header">
+                <div className="logo-container">
+                    <h2 className="logo-text">DuskPet</h2>
+                    <ThemeToggle />
+                </div>
+            </div>
+
+            <nav className="sidebar-nav">
+                <ul className="nav-list">
+                    {navItems.map((item) => (
+                        <li key={item.id}>
+                            <button
+                                className={`nav-item ${currentSite === item.id ? "active" : ""}`}
+                                onClick={() => handleNavigation(item.id)}
+                                aria-label={item.label}
+                            >
+                                <span className="nav-icon">
+                                    {item.icon}
+                                </span>
+                                <span className="nav-label">{item.label}</span>
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+        </aside>
     );
 }
