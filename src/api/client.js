@@ -61,6 +61,12 @@ class APIClient {
             data = await response.text();
         }
 
+        console.log('API Response:', {
+            status: response.status,
+            statusText: response.statusText,
+            data: data
+        });
+
         if (!response.ok) {
             if (response.status === 401) {
                 this.clearAuthToken();
@@ -105,10 +111,29 @@ class APIClient {
         const timeoutId = setTimeout(() => controller.abort(), this.timeout);
 
         try {
+            const isFormData = body instanceof FormData;
+            const headers = isFormData
+                ? this.getHeaders({ ...options.headers, 'Content-Type': undefined })
+                : this.getHeaders(options.headers);
+
+            if (isFormData) {
+                delete headers['Content-Type'];
+            }
+
+            const bodyToSend = isFormData ? body : JSON.stringify(body);
+
+            console.log('POST Request:', {
+                url: this.getURL(endpoint),
+                headers: headers,
+                body: body,
+                bodyToSend: isFormData ? '[FormData]' : bodyToSend,
+                isFormData
+            });
+
             const response = await fetch(this.getURL(endpoint), {
                 method: 'POST',
-                headers: this.getHeaders(options.headers),
-                body: JSON.stringify(body),
+                headers: headers,
+                body: bodyToSend,
                 signal: controller.signal,
                 ...options,
             });
@@ -129,10 +154,19 @@ class APIClient {
         const timeoutId = setTimeout(() => controller.abort(), this.timeout);
 
         try {
+            const isFormData = body instanceof FormData;
+            const headers = isFormData
+                ? this.getHeaders({ ...options.headers, 'Content-Type': undefined })
+                : this.getHeaders(options.headers);
+
+            if (isFormData) {
+                delete headers['Content-Type'];
+            }
+
             const response = await fetch(this.getURL(endpoint), {
                 method: 'PUT',
-                headers: this.getHeaders(options.headers),
-                body: JSON.stringify(body),
+                headers: headers,
+                body: isFormData ? body : JSON.stringify(body),
                 signal: controller.signal,
                 ...options,
             });

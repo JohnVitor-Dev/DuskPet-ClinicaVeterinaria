@@ -22,10 +22,18 @@ const PetService = {
 
     async createPet(petData) {
         try {
+            console.log('PetService - Enviando:', petData);
             const response = await apiClient.post(API_ENDPOINTS.PETS, petData);
+            console.log('PetService - Resposta:', response);
             return { success: true, data: response };
         } catch (error) {
-            return { success: false, error: error.message };
+            console.error('PetService - Erro completo:', error);
+            console.error('PetService - Erro data:', error.data);
+            return {
+                success: false,
+                error: error.message,
+                details: error.data?.details || []
+            };
         }
     },
 

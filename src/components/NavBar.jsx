@@ -3,7 +3,8 @@ import {
     navPetsSVG,
     navConsultasSVG,
     navVeterinariosSVG,
-    navLojaSVG
+    navLojaSVG,
+    navPerfilSVG
 } from "./NavIcons";
 import ThemeToggle from './ThemeToggle.jsx';
 
@@ -14,7 +15,8 @@ export default function NavBar() {
         { id: "pets", label: "Pets", icon: navPetsSVG },
         { id: "consultas", label: "Consultas", icon: navConsultasSVG },
         { id: "veterinarios", label: "Veterinários", icon: navVeterinariosSVG },
-        { id: "loja", label: "Loja", icon: navLojaSVG }
+        { id: "loja", label: "Loja", icon: navLojaSVG },
+        { id: "perfil", label: "Perfil", icon: navPerfilSVG }
     ];
 
     return (

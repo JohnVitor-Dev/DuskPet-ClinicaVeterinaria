@@ -52,6 +52,12 @@
     width: 100%;
 }
 
+.nav-list li {
+    flex: 1;
+    display: flex;
+    min-width: 0;
+}
+
 .nav-item {
     width: 100%;
     display: flex;
@@ -119,6 +125,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .sidebar-nav::-webkit-scrollbar {
@@ -186,6 +193,7 @@
 
     .nav-list li {
         padding: 0 1rem;
+        flex: none;
     }
 
     .nav-item {
