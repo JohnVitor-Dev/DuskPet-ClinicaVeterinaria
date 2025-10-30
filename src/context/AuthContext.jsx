@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import apiClient from '../api/client.js';
 import { API_ENDPOINTS } from '../config/api.js';
+import PetService from '../services/PetService.js';
 
 const AuthContext = createContext(null);
 
@@ -69,6 +70,9 @@ export const AuthProvider = ({ children }) => {
 
                 localStorage.setItem('user', JSON.stringify(userData));
                 setUser(userData);
+
+                PetService.clearCachedPets();
+                console.log('🧹 Cache limpo no login para atualização');
 
                 return { success: true, user: userData };
             } catch (profileErr) {
@@ -216,6 +220,9 @@ export const AuthProvider = ({ children }) => {
         apiClient.clearAuthToken();
         setUser(null);
         setError(null);
+
+        PetService.clearCachedPets();
+        console.log('🧹 Cache limpo no logout');
     };
 
     const updateProfile = async (updates) => {
@@ -279,6 +286,12 @@ export const AuthProvider = ({ children }) => {
         return user?.role === role;
     };
 
+    const updateUser = (updatedData) => {
+        const updatedUser = { ...user, ...updatedData };
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        setUser(updatedUser);
+    };
+
     const value = {
         user,
         loading,
@@ -292,6 +305,7 @@ export const AuthProvider = ({ children }) => {
         fetchProfile,
         isAuthenticated,
         hasRole,
+        updateUser,
     };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

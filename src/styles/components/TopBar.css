@@ -15,10 +15,18 @@
 .topbar-title {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 0;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 1rem;
+    gap: 1rem;
+}
+
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
 }
 
 .topbar-logo {
@@ -38,4 +46,60 @@
     line-height: 36px;
     text-align: left;
     white-space: nowrap;
+    margin-right: auto;
+}
+
+.logout-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    border-radius: 0.5rem;
+    color: var(--primary-color);
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(65, 105, 225, 0.3);
+}
+
+.logout-button .material-symbols-outlined {
+    font-size: 1.25rem;
+}
+
+.logout-text {
+    display: inline;
+}
+
+@media (max-width: 640px) {
+    .topbar-title {
+        padding: 0 0.75rem;
+    }
+
+    .topbar-petshop-name {
+        font-size: 24px;
+    }
+
+    .logout-button {
+        padding: 0.5rem;
+        min-width: 40px;
+        justify-content: center;
+    }
+
+    .logout-text {
+        display: none;
+    }
+
+    .logout-button .material-symbols-outlined {
+        margin: 0;
+    }
 }

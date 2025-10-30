@@ -4,20 +4,39 @@
         'Hiragino Sans GB', 'Microsoft Yahei UI', 'Microsoft Yahei',
         'Source Han Sans CN', sans-serif;
 
-    /* Cores */
+    /* Cores principais */
     --electricBlue: #3392ff;
     --darkBlue: #3352ff;
     --primary-color: #4169E1;
+    --primary-hover: #3151c7;
     --primary-color-transparent: rgba(65, 105, 225, 0.2);
 
+    /* Cores de status */
+    --success-color: #10b981;
+    --success-bg: rgba(16, 185, 129, 0.1);
+    --error-color: #ef4444;
+    --error-bg: rgba(239, 68, 68, 0.1);
+    --warning-color: #f59e0b;
+    --warning-bg: rgba(245, 158, 11, 0.1);
+
+    /* Ilustrações e ícones */
     --loginIllustration: url('../../assets/svg/loginIllustration-Dark.svg');
     --navPets: url('../../assets/svg/navPets.svg');
     --navConsultas: url('../../assets/svg/navConsultas.svg');
     --navVeterinarios: url('../../assets/svg/navVeterinarios.svg');
     --navLoja: url('../../assets/svg/navLoja.svg');
 
-    /* Efeitos */
+    /* Sombras */
     --newtabbar-box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.4);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 12px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+    /* Transições */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
 }
 
 :root.lightMode {
@@ -28,9 +47,13 @@
     --input-bg: #f7f8f9;
     --input-border: #cccccc;
     --card-bg: #ffffff;
+    --card-background: #ffffff;
     --card-hover-bg: #f9f9f9;
     --border-color: #e5e5e5;
     --hover-bg: #f5f5f5;
+
+    /* Background Pattern */
+    --bg-pattern-color: rgba(224, 224, 224, 0.05);
 }
 
 :root.darkMode {
@@ -41,9 +64,17 @@
     --input-bg: #333333;
     --input-border: #555555;
     --card-bg: #1e1e1e;
+    --card-background: #1e1e1e;
     --card-hover-bg: #2a2a2a;
     --border-color: #3a3a3a;
     --hover-bg: #2a2a2a;
+
+    /* Background Pattern */
+    --bg-pattern-color: rgba(224, 224, 224, 0.05);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 #root {
@@ -55,18 +86,35 @@
     padding: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
     background: var(--duskTheme);
     color: var(--text);
     font-family: Montserrat;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition: background var(--transition-normal), color var(--transition-normal);
 }
 
 .page-wrapper {
     display: flex;
     width: 100%;
     height: 100vh;
+    max-width: 100vw;
+    overflow: hidden;
     align-items: flex-start;
     justify-content: flex-start;
+    padding-bottom: 80px;
+}
+
+@media (min-width: 769px) {
+    .page-wrapper {
+        padding-bottom: 0;
+        padding-left: 80px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .page-wrapper {
+        padding-left: 280px;
+    }
 }
 
 body {
@@ -74,11 +122,23 @@ body {
     padding: 0;
     width: 100dvw;
     height: 100dvh;
+    overflow: hidden;
 }
 
 .hidden {
-    display: none;
-    visibility: hidden;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Background Pattern Utility */
+.page-bg-pattern {
+    background: var(--duskTheme);
+    background-image:
+        radial-gradient(circle at 25px 25px, var(--bg-pattern-color) 2%, transparent 0%),
+        radial-gradient(circle at 75px 75px, var(--bg-pattern-color) 2%, transparent 0%);
+    background-size: 100px 100px;
 }
 
 h2 {
@@ -87,7 +147,7 @@ h2 {
     font-size: 30px;
     font-weight: 800;
     line-height: 36px;
-    transition: color 0.3s ease;
+    transition: color var(--transition-normal);
 }
 
 p {
@@ -97,7 +157,7 @@ p {
     padding: 0;
     margin: 0;
     color: var(--text);
-    transition: color 0.3s ease;
+    transition: color var(--transition-normal);
 }
 
 .button {
@@ -112,13 +172,19 @@ p {
     border-radius: 10px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     border: none;
-    background: #3352ff;
+    background: var(--darkBlue);
     color: #ffffff;
     font-family: Montserrat, var(--default-font-family);
     font-size: 18px;
     font-weight: 600;
     text-align: center;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    transition: background var(--transition-normal), transform var(--transition-fast);
+}
+
+.button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
 }
 
 .material-symbols-outlined {
@@ -127,4 +193,38 @@ p {
         'wght' 400,
         'GRAD' 0,
         'opsz' 24;
+}
+
+/* Estilos globais para select e option */
+select {
+    background: var(--input-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--input-border);
+    color-scheme: light dark;
+}
+
+:root.lightMode select {
+    color-scheme: light;
+}
+
+:root.darkMode select {
+    color-scheme: dark;
+}
+
+select option {
+    background: var(--input-bg);
+    color: var(--text-primary);
+    padding: 0.5rem;
+}
+
+/* Para navegadores Webkit (Chrome, Safari, Edge) */
+select option:checked {
+    background: var(--primary-color) linear-gradient(0deg, var(--primary-color) 0%, var(--primary-color) 100%);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+select option:hover {
+    background: var(--hover-bg);
+    color: var(--text-primary);
 }

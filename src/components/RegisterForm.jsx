@@ -83,14 +83,7 @@ export default function RegisterForm() {
                 <h2>Criar sua Conta</h2>
                 <form className="registerForm" onSubmit={handleRegister}>
                     {error && (
-                        <div style={{
-                            color: '#ff4444',
-                            backgroundColor: '#ffebee',
-                            padding: '10px',
-                            borderRadius: '5px',
-                            marginBottom: '15px',
-                            fontSize: '14px'
-                        }}>
+                        <div className="error-message">
                             {error}
                         </div>
                     )}

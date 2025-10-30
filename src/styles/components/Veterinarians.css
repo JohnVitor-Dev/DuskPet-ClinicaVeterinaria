@@ -1,0 +1,765 @@
+.veterinarians-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    padding-bottom: 8rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+@media (min-width: 769px) {
+    .veterinarians-container {
+        padding-bottom: 2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin-left: 80px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .veterinarians-container {
+        margin-left: 280px;
+    }
+}
+
+.veterinarians-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.veterinarians-header .header-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-primary);
+}
+
+.veterinarians-header .header-content .material-symbols-outlined {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.veterinarians-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.error-message {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--error-bg);
+    border: 1px solid var(--error-color);
+    border-radius: 0.5rem;
+    color: var(--error-color);
+    font-size: 0.875rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.error-message .material-symbols-outlined {
+    font-size: 1.25rem;
+}
+
+.success-toast {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    background: var(--success-color);
+    color: white;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+    z-index: 10000;
+    animation: slideInRight 0.3s ease-out, fadeOut 0.3s ease-out 2.7s forwards;
+}
+
+.success-toast .material-symbols-outlined {
+    font-size: 1.5rem;
+}
+
+.header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.filter-select {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 200px;
+}
+
+.filter-select:hover {
+    border-color: var(--primary-color);
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-color-transparent);
+}
+
+.add-vet-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-vet-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.add-vet-btn .material-symbols-outlined {
+    font-size: 1.25rem;
+}
+
+.veterinarians-loading {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--text-secondary);
+}
+
+.veterinarians-loading .material-symbols-outlined {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+.empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--text-secondary);
+    padding: 3rem;
+    text-align: center;
+}
+
+.empty-state .material-symbols-outlined {
+    font-size: 4rem;
+    color: var(--primary-color);
+    opacity: 0.5;
+}
+
+.veterinarians-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+    .veterinarians-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .veterinarians-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.vet-card {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    border-top: 4px solid var(--primary-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.vet-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    background: var(--card-hover-bg);
+}
+
+.vet-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+}
+
+.vet-avatar {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 4px var(--primary-color-transparent);
+    flex-shrink: 0;
+}
+
+.vet-avatar .material-symbols-outlined {
+    font-size: 2rem;
+    color: white;
+}
+
+.vet-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.vet-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.vet-crmv {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.vet-actions {
+    display: flex;
+    gap: 0.5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+}
+
+.action-btn .material-symbols-outlined {
+    font-size: 1.25rem;
+}
+
+.edit-btn {
+    color: var(--primary-color);
+}
+
+.edit-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.delete-btn {
+    color: var(--error-color);
+}
+
+.delete-btn:hover {
+    background: var(--error-color);
+    color: white;
+}
+
+.vet-specialties {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.specialty-tag {
+    padding: 0.25rem 0.75rem;
+    background: var(--primary-color-transparent);
+    color: var(--primary-color);
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.vet-schedule-preview {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: var(--background);
+    border-radius: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.vet-schedule-preview .material-symbols-outlined {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease-out;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    background: var(--card-bg);
+    z-index: 1;
+}
+
+.modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+    background: var(--background);
+    color: var(--text-primary);
+}
+
+.close-btn .material-symbols-outlined {
+    font-size: 1.5rem;
+}
+
+.vet-form {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background: var(--input-bg);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-color-transparent);
+}
+
+.form-group small {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.horarios-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--background);
+    border-radius: 0.5rem;
+}
+
+.horario-dia {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dia-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dia-header span {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.add-horario-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: none;
+    border-radius: 0.375rem;
+    background: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-horario-btn:hover {
+    background: var(--primary-hover);
+}
+
+.add-horario-btn .material-symbols-outlined {
+    font-size: 1rem;
+}
+
+.horarios-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.horario-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.horario-item input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.horario-item span {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.remove-horario-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 0.375rem;
+    background: transparent;
+    color: var(--error-color);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.remove-horario-btn:hover {
+    background: var(--error-bg);
+}
+
+.remove-horario-btn .material-symbols-outlined {
+    font-size: 1.125rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.cancel-btn,
+.submit-btn {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancel-btn {
+    background: var(--background);
+    color: var(--text-primary);
+}
+
+.cancel-btn:hover {
+    background: var(--border-color);
+}
+
+.submit-btn {
+    background: var(--primary-color);
+    color: white;
+}
+
+.submit-btn:hover {
+    background: var(--primary-hover);
+}
+
+.submit-btn:disabled,
+.cancel-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.details-modal {
+    max-width: 700px;
+}
+
+.details-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 3rem;
+    color: var(--text-secondary);
+}
+
+.details-loading .material-symbols-outlined {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+.details-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.detail-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.detail-avatar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 4px var(--primary-color-transparent);
+}
+
+.detail-avatar .material-symbols-outlined {
+    font-size: 2.5rem;
+    color: white;
+}
+
+.detail-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.detail-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.detail-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.detail-section h4 .material-symbols-outlined {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .detail-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.detail-item .label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.detail-item .value {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+.specialties-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.specialty-tag-large {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color-transparent);
+    color: var(--primary-color);
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.schedule-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.75rem;
+    background: var(--background);
+    border-radius: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .schedule-item {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.schedule-day {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 150px;
+}
+
+.schedule-hours {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}

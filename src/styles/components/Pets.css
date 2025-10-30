@@ -6,12 +6,56 @@
     flex-direction: column;
     padding: 1rem;
     padding-bottom: 6rem;
+    overflow-x: hidden;
     overflow-y: auto;
-    background: var(--duskTheme);
-    background-image:
-        radial-gradient(circle at 25px 25px, rgba(224, 224, 224, 0.05) 2%, transparent 0%),
-        radial-gradient(circle at 75px 75px, rgba(224, 224, 224, 0.05) 2%, transparent 0%);
-    background-size: 100px 100px;
+}
+
+.cache-status-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.cache-status-bar .material-symbols-outlined {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.cache-status-bar span:not(.material-symbols-outlined) {
+    flex: 1;
+}
+
+.cache-status-bar .refresh-button {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cache-status-bar .refresh-button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.cache-status-bar .refresh-button .material-symbols-outlined {
+    font-size: 1rem;
+    color: white;
 }
 
 .pets-header {
@@ -51,25 +95,10 @@
     color: var(--primary-color);
 }
 
-.spinning {
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 .pets-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
-    overflow-y: auto;
     padding-bottom: 1rem;
     align-content: start;
 }
@@ -158,18 +187,24 @@
     cursor: pointer;
     transition: all 0.2s ease;
     background: transparent;
+    color: var(--text-primary);
+}
+
+.pet-action-btn:hover {
+    background: var(--hover-bg);
 }
 
 .pet-action-btn .material-symbols-outlined {
     font-size: 1.5rem;
+    color: inherit;
 }
 
 .pet-action-btn.delete {
-    color: #ef4444;
+    color: var(--error-color);
 }
 
 .pet-action-btn.delete:hover {
-    background: rgba(239, 68, 68, 0.1);
+    background: var(--error-bg);
 }
 
 .pets-empty-state {
@@ -263,6 +298,12 @@
     z-index: 10;
 }
 
+@media (min-width: 769px) {
+    .pets-add-button {
+        bottom: 2rem;
+    }
+}
+
 .pets-add-button:hover {
     transform: scale(1.05);
 }
@@ -281,12 +322,15 @@
     left: 0;
     right: 0;
     bottom: 0;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
     padding: 1rem;
+    overflow: hidden;
 }
 
 .modal-content {
@@ -295,6 +339,7 @@
     max-width: 500px;
     width: 100%;
     max-height: 90vh;
+    overflow-x: hidden;
     overflow-y: auto;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
@@ -504,10 +549,19 @@
     color: var(--text-primary);
 }
 
+.pet-action-btn:focus-visible,
+.modal-close:focus-visible,
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.pets-add-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--primary-color-transparent);
+}
+
 @media (min-width: 769px) {
     .pets-container {
         padding: 2rem;
-        padding-left: 6rem;
+        padding-left: 2rem;
         padding-bottom: 2rem;
     }
 
@@ -627,7 +681,7 @@
 
 @media (min-width: 1025px) {
     .pets-container {
-        padding-left: 18rem;
+        padding-left: 2rem;
     }
 
     .pets-grid {

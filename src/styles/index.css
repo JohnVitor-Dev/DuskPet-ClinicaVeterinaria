@@ -1,4 +1,5 @@
 @import url('./globals/main.css');
+@import url('./globals/animations.css');
 @import url('./components/AuthPage.css');
 @import url('./components/WelcomePage.css');
 @import url('./components/Forms.css');

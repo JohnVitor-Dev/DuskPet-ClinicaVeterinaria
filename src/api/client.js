@@ -1,4 +1,5 @@
 import { API_CONFIG } from '../config/api.js';
+import { logger } from '../utils/logger.js';
 
 export class APIError extends Error {
     constructor(message, status, data) {
@@ -61,7 +62,7 @@ class APIClient {
             data = await response.text();
         }
 
-        console.log('API Response:', {
+        logger.log('API Response:', {
             status: response.status,
             statusText: response.statusText,
             data: data
@@ -81,6 +82,54 @@ class APIClient {
         }
 
         return data;
+    }
+
+    async getBlob(endpoint, options = {}) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), this.timeout);
+
+        try {
+            const response = await fetch(this.getURL(endpoint), {
+                method: 'GET',
+                headers: this.getHeaders(options.headers),
+                signal: controller.signal,
+                ...options,
+            });
+
+            const contentType = response.headers.get('content-type');
+
+            if (!response.ok) {
+                if (response.status === 401) {
+                    this.clearAuthToken();
+                    window.location.href = '/login';
+                }
+
+                let errorMessage = 'Erro na requisição';
+                try {
+                    if (contentType && contentType.includes('application/json')) {
+                        const errJson = await response.json();
+                        errorMessage = errJson.message || errJson.error || errorMessage;
+                        throw new APIError(errorMessage, response.status, errJson);
+                    } else {
+                        const errText = await response.text();
+                        errorMessage = errText || errorMessage;
+                        throw new APIError(errorMessage, response.status, errText);
+                    }
+                } catch (e) {
+                    if (e instanceof APIError) throw e;
+                    throw new APIError(errorMessage, response.status);
+                }
+            }
+
+            return await response.blob();
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                throw new APIError('Requisição expirou', 408);
+            }
+            throw error;
+        } finally {
+            clearTimeout(timeoutId);
+        }
     }
 
     async get(endpoint, options = {}) {

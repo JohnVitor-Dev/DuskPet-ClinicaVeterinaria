@@ -1,5 +1,5 @@
 export const API_CONFIG = {
-    BASE_URL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
+    BASE_URL: import.meta.env.VITE_API_URL,
 
     TIMEOUT: 30000,
 
@@ -18,6 +18,7 @@ export const API_ENDPOINTS = {
 
     PETS: '/protected/pets',
     PET_DETAIL: (id) => `/protected/pets/${id}`,
+    PET_IMAGE: (id) => `/protected/pets/${id}/imagem`,
 
     AGENDAMENTOS: '/protected/agendamentos',
     AGENDAMENTO_DETAIL: (id) => `/protected/agendamentos/${id}`,
@@ -31,8 +32,8 @@ export const API_ENDPOINTS = {
 
     PRODUTOS: '/protected/produtos',
     PRODUTO_DETAIL: (id) => `/protected/produtos/${id}`,
-    PRODUTO_AJUSTAR_ESTOQUE: (id) => `/protected/produtos/${id}/ajustar-estoque`,
-    PRODUTOS_RELATORIO_ESTOQUE: '/protected/produtos/relatorio/estoque',
+    PRODUTO_AJUSTAR_ESTOQUE: (id) => `/protected/produtos/${id}/estoque`,
+    PRODUTOS_RELATORIO_ESTOQUE: '/protected/produtos/relatorio',
 
     ADMIN_DASHBOARD: '/admin/dashboard',
     ADMIN_VETERINARIOS: '/admin/veterinarios',

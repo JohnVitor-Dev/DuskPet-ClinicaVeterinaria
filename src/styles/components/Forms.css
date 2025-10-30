@@ -10,6 +10,18 @@
     height: auto;
 }
 
+.error-message {
+    width: 80%;
+    padding: 10px;
+    background: var(--error-bg);
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    transition: background var(--transition-normal), color var(--transition-normal);
+}
+
 .loginForm input,
 .registerForm input {
     width: 80%;
@@ -23,14 +35,14 @@
     font-size: 16px;
     font-weight: 400;
     text-align: left;
-    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition: background var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal);
 }
 
 .loginForm input::placeholder,
 .registerForm input::placeholder {
     color: var(--text);
     opacity: 0.5;
-    transition: color 0.3s ease;
+    transition: color var(--transition-normal);
 }
 
 .loginForm input:focus,
@@ -57,7 +69,7 @@
     justify-content: center;
     width: 100%;
     color: var(--text);
-    transition: color 0.3s ease;
+    transition: color var(--transition-normal);
 }
 
 .loginForm a,
@@ -71,7 +83,7 @@
     color: var(--darkBlue);
     text-decoration: none;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: color var(--transition-normal);
 }
 
 .loginForm a:hover,

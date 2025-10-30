@@ -3,6 +3,7 @@
     bottom: 0;
     left: 0;
     width: 100dvw;
+    max-width: 100vw;
     height: auto;
     background: linear-gradient(180deg, var(--darkBlue) 0%, #1a3a52 100%);
     box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
@@ -11,6 +12,7 @@
     justify-content: center;
     flex-direction: row;
     z-index: 1000;
+    overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -126,6 +128,19 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
+}
+
+.logout-nav-item {
+    border-left: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.logout-nav-item:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ff6b6b;
+}
+
+.logout-nav-item:hover::before {
+    background: #ff6b6b;
 }
 
 .sidebar-nav::-webkit-scrollbar {

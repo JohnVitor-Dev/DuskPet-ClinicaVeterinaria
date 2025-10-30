@@ -7,7 +7,6 @@ import Pets from "./pages/Pets.jsx";
 import Consultations from "./pages/Consultations.jsx";
 import Veterinarians from "./pages/Veterinarians.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
-import Shop from "./pages/Shop.jsx";
 
 
 function ProtectedRoute({ children }) {
@@ -27,7 +26,6 @@ function App() {
         <Route path="/consultas" element={<ProtectedRoute><Consultations /></ProtectedRoute>} />
         <Route path="/veterinarios" element={<ProtectedRoute><Veterinarians /></ProtectedRoute>} />
         <Route path="/perfil" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
-        <Route path="/loja" element={<ProtectedRoute><Shop /></ProtectedRoute>} />
       </Routes>
     </Router>
   );

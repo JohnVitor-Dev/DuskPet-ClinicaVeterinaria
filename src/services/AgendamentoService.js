@@ -2,9 +2,14 @@ import apiClient from '../api/client.js';
 import { API_ENDPOINTS } from '../config/api.js';
 
 const AgendamentoService = {
-    async listAgendamentos() {
+    async listAgendamentos(params = undefined) {
         try {
-            const response = await apiClient.get(API_ENDPOINTS.AGENDAMENTOS);
+            let url = API_ENDPOINTS.AGENDAMENTOS;
+            if (params && Object.keys(params).length > 0) {
+                const queryString = new URLSearchParams(params).toString();
+                url = `${url}?${queryString}`;
+            }
+            const response = await apiClient.get(url);
             return { success: true, data: response };
         } catch (error) {
             return { success: false, error: error.message };

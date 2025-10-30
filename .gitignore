@@ -22,9 +22,22 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Documentation files
+# Documentation files (old/temporary)
 FRONTEND_STATUS.md
 GUIA_RAPIDO.md
 RESUMO_DETALHADO.md
 ROTAS_API.md
-.env.example
+
+# Keep these docs for production
+# README.md - KEEP
+# DEPLOY_GUIDE.md - KEEP
+# CHECKLIST_DEPLOY.md - KEEP
+# ROTAS.md - KEEP
+
+.vscode/
+.env
+
+.vercel
+
+# Build output
+dist
